@@ -1,3 +1,6 @@
 [submodule "src/fusion-engine-client"]
 	path = src/fusion-engine-client
 	url = https://github.com/PointOneNav/fusion-engine-client.git
+[submodule "src/car_heading_generator"]
+	path = src/car_heading_generator
+	url = https://github.com/airacingtech/car_heading_generator

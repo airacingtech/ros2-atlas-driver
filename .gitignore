@@ -31,3 +31,6 @@ docs/versions.html
 # Other output files.
 *.csv
 *.kml
+
+# VSCode
+.vscode/

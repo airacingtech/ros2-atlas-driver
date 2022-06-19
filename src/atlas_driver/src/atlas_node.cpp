@@ -29,11 +29,11 @@ public:
     this->declare_parameter("atlas_tcp_port", 30201);
     this->declare_parameter("frame_id", "");
     frame_id_ = this->get_parameter("frame_id").as_string();
-    pose_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/atlas/pose", rclcpp::SensorDataQoS());
-    gps_fix_publisher_ = this->create_publisher<gps_msgs::msg::GPSFix>("/atlas/gps_fix", rclcpp::SensorDataQoS());
-    nav_fix_publisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("/atlas/fix", rclcpp::SensorDataQoS());
-    imu_publisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/atlas/imu", rclcpp::SensorDataQoS());
-    timer_ = create_wall_timer(std::chrono::milliseconds(1), std::bind(&PointOneNavAtlasNode::serciveLoopCb, this));
+    pose_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("pose", rclcpp::SensorDataQoS());
+    gps_fix_publisher_ = this->create_publisher<gps_msgs::msg::GPSFix>("gps_fix", rclcpp::SensorDataQoS());
+    nav_fix_publisher_ = this->create_publisher<sensor_msgs::msg::NavSatFix>("fix", rclcpp::SensorDataQoS());
+    imu_publisher_ = this->create_publisher<sensor_msgs::msg::Imu>("imu", rclcpp::SensorDataQoS());
+    timer_ = create_wall_timer(std::chrono::milliseconds(1), std::bind(&PointOneNavAtlasNode::serviceLoopCb, this));
     gps.initialize(
       this,
       this->get_parameter("atlas_udp_port").as_int(),
@@ -109,7 +109,7 @@ private:
   /**
    * Initiate gps unit to read data.
    */
-  void serciveLoopCb() {
+  void serviceLoopCb() {
     RCLCPP_INFO(this->get_logger(), "Service");
     timer_->cancel(); // one-time enrty into service loop
     gps.service();

@@ -20,7 +20,13 @@ def generate_launch_description():
         output='screen',
         parameters=[
             param_file_path
-        ]
+        ],
+        remappings={
+            'fix':'/gps/fix',
+            'gps_fix': '/gps/gps',
+            'imu': '/gps/imu',
+            'pose': '/gps/pose'
+        }.items()
     )
 
     ld = LaunchDescription()

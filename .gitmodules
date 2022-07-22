@@ -1,3 +1,0 @@
-[submodule "src/car_heading_generator"]
-	path = src/car_heading_generator
-	url = https://github.com/airacingtech/car_heading_generator
